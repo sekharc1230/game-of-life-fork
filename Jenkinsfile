@@ -3,6 +3,9 @@ node('java-applications') {
         git url: 'https://github.com/sekharc1230/game-of-life-fork.git',
            branch: 'scripted'
     }
+    stage('Build the code') {
+        sh 'export PATH="/usr/lib/jvm/java-1.8.0-openjdk-amd64/bin:$PATH" && mvn package'
+    }
     stage('archive the artifacts') {
         archiveArtifacts onlyIfSuccessful: true,
         artifacts : '**/target/gameoflife.war',
